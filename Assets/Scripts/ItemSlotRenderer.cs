@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class ItemSlotRenderer : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public BaseItem baseItem;
+    public Image icon;
+    public Text quantity;
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        icon.enabled = true;
+        quantity.enabled = true;
+        icon.sprite = baseItem.icon;
     }
 }

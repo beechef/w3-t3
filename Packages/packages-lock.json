@@ -63,11 +63,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.nuget.newtonsoft-json": {
-      "version": "3.0.2",
-      "depth": 2,
-      "source": "registry",
+      "version": "https://github.com/needle-mirror/com.unity.nuget.newtonsoft-json.git",
+      "depth": 0,
+      "source": "git",
       "dependencies": {},
-      "url": "https://packages.unity.com"
+      "hash": "e69e74cef3b1bd66d3ac4be72a5c7f6da9a1b5cf"
     },
     "com.unity.performance.profile-analyzer": {
       "version": "1.1.1",
