@@ -1,12 +1,61 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
+using UnityEngine;
 
-public class InventoryData
+public class InventoryData : MonoBehaviour
 {
-    private List<Item> items = new List<Item>();
-    private static readonly string Inventory = "INVENTORY";
+    public static InventoryData Instance;
+    public bool SaveData;
+    public List<Item> items;
+    public BaseItemList baseItemList;
+    private const string Inventory = "INVENTORY";
 
-    public static void Load()
+    private void Awake()
     {
-        
+        if (Instance != null)
+        {
+            return;
+        }
+
+        Instance = this;
+        Load();
     }
+
+    private void Update()
+    {
+        if (SaveData)
+        {
+            SaveData = false;
+            Save();
+            InventoryController.Instance.RenderItemSlot();
+        }
+    }
+
+    private void Load()
+    {
+        items = JsonConvert.DeserializeObject<List<Item>>(PlayerPrefs.GetString(Inventory)) ??
+                new List<Item>();
+        foreach (var baseItem in baseItemList.baseItems)
+        {
+            foreach (var item in items)
+            {
+                if (item.baseItemId == baseItem.id)
+                {
+                    item.baseItem = baseItem;
+                }
+            }
+        }
+    }
+
+    private void Save()
+    {
+        PlayerPrefs.SetString(Inventory, JsonConvert.SerializeObject((from item in items select new Item()
+        {
+            id = item.id,
+            baseItemId = item.baseItem.id
+        }).ToList()));
+    }
+    
 }

@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a67a6ad80b433daef1b2b73417ef7c, type: 3}
   m_Name: Heal Point
   m_EditorClassIdentifier: 
-  index: 2
+  id: 3
   name: Heal Point
+  isStackable: 1
+  maxSize: 5
   icon: {fileID: 21300000, guid: 28d59d4aaf02fc94092d8b84d7f8fd64, type: 3}
+  stat:
+    strength: 0
+    agility: 0
+    intelligence: 0
+    vitality: 0
