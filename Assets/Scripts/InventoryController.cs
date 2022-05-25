@@ -64,19 +64,20 @@ public class InventoryController : MonoBehaviour
                     if (baseItem == null) continue;
                     if (baseItem.id == item.baseItem.id)
                     {
-                        int quantity = Int32.Parse(itemSlotRenderer.quantity.text);
-                        if (quantity + 1 <= item.baseItem.maxSize)
-                        {
-                            quantity++;
-                            itemSlotRenderer.quantity.text = quantity.ToString();
-                            hasContainer = true;
-                            break;
-                        }
+                        if (itemSlotRenderer.AddQuantity()) hasContainer = true;
                     }
                 }
             }
+
             if (!hasContainer)
+            {
+                if (renderSlotCount >= _itemSlotRenderers.Count)
+                {
+                    Debug.Log("Not Enough Space!");
+                    break;
+                }
                 _itemSlotRenderers[renderSlotCount++].Render(item.baseItem);
+            }
         }
     }
 }

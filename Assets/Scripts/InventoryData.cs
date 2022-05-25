@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
+using Unity.Collections;
 using UnityEngine;
 
 public class InventoryData : MonoBehaviour
 {
     public static InventoryData Instance;
+    public Item item;
+    public bool AddItem;
     public bool SaveData;
     public List<Item> items;
     public BaseItemList baseItemList;

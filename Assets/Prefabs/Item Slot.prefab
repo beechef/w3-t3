@@ -129,7 +129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseItem: {fileID: 0}
   icon: {fileID: 2404627000057888805}
-  quantity: {fileID: 2404627000814450175}
+  quantity: 1
+  textQuantity: {fileID: 2404627000814450175}
 --- !u!1 &2404627000814450173
 GameObject:
   m_ObjectHideFlags: 0
