@@ -1,42 +1,23 @@
-using System;
-using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
-public class ItemSlotRenderer : MonoBehaviour
+public class ItemSlotRenderer : ItemRenderer
 {
-    public BaseItem baseItem;
-    public Image icon;
     public int quantity;
     public Text textQuantity;
-    
-    public void Render(BaseItem baseItem)
+
+    public override void Render(ItemContainer itemContainer)
     {
-        this.baseItem = baseItem;
-        icon.enabled = true;
+        base.Render(itemContainer);
         textQuantity.enabled = true;
-        icon.sprite = this.baseItem.icon;
-        quantity = 1;
+        quantity = this.itemContainer.Quantity;
         textQuantity.text = quantity.ToString();
     }
-    public void Clear()
+
+    public override void Clear(int slot)
     {
-        baseItem = null;
-        icon.enabled = false;
+        base.Clear(slot);
         textQuantity.enabled = false;
         quantity = 1;
         textQuantity.text = quantity.ToString();
-    }
-
-    public bool AddQuantity()
-    {
-        if (quantity + 1 < baseItem.maxSize && baseItem.isStackable)
-        {
-            quantity++;
-            textQuantity.text = quantity.ToString();
-            return true;
-        }
-
-        return false;
     }
 }

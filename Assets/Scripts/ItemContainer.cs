@@ -2,22 +2,27 @@
 using UnityEngine;
 
 [System.Serializable]
-public class Item
+public class ItemContainer
 {
     public int id;
-    [HideInInspector]
-    public int baseItemId;
+    public int slot;
+    [HideInInspector] public int baseItemId = -1;
     public BaseItem baseItem;
-}
-
-public class ItemContainer : Item
-{
     public List<Item> items;
+
     public int Quantity
     {
         get
         {
+            if (items == null || items.Count == 0) return 1;
             return items.Count;
         }
     }
+}
+
+[System.Serializable]
+public class Item
+{
+    public int id;
+    public int baseItemId;
 }

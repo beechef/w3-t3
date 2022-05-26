@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a67a6ad80b433daef1b2b73417ef7c, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  id: 0
+  id: 3
   name: Axe
+  type: 3
+  isStackable: 0
+  maxSize: 0
   icon: {fileID: 21300000, guid: 11afa5cbe2051d84a83f7d4081110324, type: 3}
   stat:
     strength: 0

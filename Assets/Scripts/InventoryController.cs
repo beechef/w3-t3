@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour
@@ -11,8 +8,13 @@ public class InventoryController : MonoBehaviour
     public Transform itemSlotPrefab;
     public Transform itemSlots;
     public int maxSlot;
+    public ItemRenderer helmSlot;
+    public ItemRenderer armorSlot;
+    public ItemRenderer weaponSlot;
+    public ItemRenderer shieldSlot;
     private InventoryData _inventoryData;
     private List<ItemSlotRenderer> _itemSlotRenderers;
+    private ItemRenderer[] _requirements;
 
     private void Awake()
     {
@@ -28,55 +30,60 @@ public class InventoryController : MonoBehaviour
     {
         _inventoryData = InventoryData.Instance;
         _itemSlotRenderers = new List<ItemSlotRenderer>();
-        InitialItemSlot();
-        RenderItemSlot();
+        _requirements = new ItemRenderer[Enum.GetNames(typeof(SlotType)).Length];
+        InitialSlot();
+        RenderSlot();
     }
 
-    private void InitialItemSlot()
+    private void InitialSlot()
     {
         for (int i = 0; i < maxSlot; i++)
         {
             _itemSlotRenderers.Add(Instantiate(itemSlotPrefab, itemSlots).GetComponent<ItemSlotRenderer>());
         }
+
+        _requirements[Convert.ToInt32(SlotType.Helm)] = helmSlot;
+        _requirements[Convert.ToInt32(SlotType.Armor)] = armorSlot;
+        _requirements[Convert.ToInt32(SlotType.Weapon)] = weaponSlot;
+        _requirements[Convert.ToInt32(SlotType.Shield)] = shieldSlot;
     }
 
     private void ClearSlot()
     {
-        foreach (var itemSlotRenderer in _itemSlotRenderers)
+        for (int i = 0; i < _itemSlotRenderers.Count; i++)
         {
-            itemSlotRenderer.Clear();
+            _itemSlotRenderers[i].Clear(i);
+        }
+
+        for (int i = 0; i < _requirements.Length; i++)
+        {
+            if (_requirements[i] != null)
+            {
+                _requirements[i].Clear(i);
+            }
         }
     }
 
-    public void RenderItemSlot()
+    public void RenderSlot()
     {
         ClearSlot();
-        var renderSlotCount = 0;
-        for (var i = 0; i < _inventoryData.items.Count; i++)
+        for (var i = 0; i < _inventoryData.inventoryItems.Count; i++)
         {
-            bool hasContainer = false;
-            Item item = _inventoryData.items[i];
-            if (item.baseItem.isStackable)
+            ItemContainer itemContainer = _inventoryData.inventoryItems[i];
+
+            if (itemContainer.slot >= maxSlot)
             {
-                foreach (var itemSlotRenderer in _itemSlotRenderers)
-                {
-                    var baseItem = itemSlotRenderer.baseItem;
-                    if (baseItem == null) continue;
-                    if (baseItem.id == item.baseItem.id)
-                    {
-                        if (itemSlotRenderer.AddQuantity()) hasContainer = true;
-                    }
-                }
+                Debug.Log("Not Enough Space!");
+                break;
             }
 
-            if (!hasContainer)
+            _itemSlotRenderers[itemContainer.slot].Render(itemContainer);
+        }
+        for (int i = 0; i < _requirements.Length; i++)
+        {
+            if (_requirements[i] != null)
             {
-                if (renderSlotCount >= _itemSlotRenderers.Count)
-                {
-                    Debug.Log("Not Enough Space!");
-                    break;
-                }
-                _itemSlotRenderers[renderSlotCount++].Render(item.baseItem);
+                _requirements[i].Render(_inventoryData.requirementItems[i]);
             }
         }
     }

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91a67a6ad80b433daef1b2b73417ef7c, type: 3}
-  m_Name: Bow
+  m_Name: Helm Up
   m_EditorClassIdentifier: 
-  id: 5
-  name: Bow
-  type: 3
+  id: 7
+  name: Helm Up
+  type: 1
   isStackable: 0
   maxSize: 0
-  icon: {fileID: 21300000, guid: 071460795786dfc4dbbdd4f483ca25fe, type: 3}
+  icon: {fileID: 21300000, guid: 87630f81fe8754d49bab3fa66b0481cd, type: 3}
   stat:
     strength: 0
     agility: 0
