@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 8248182417899508420}
   - component: {fileID: 8071396635814718227}
   - component: {fileID: 3371849220593275887}
+  - component: {fileID: 842959451339457639}
   m_Layer: 5
   m_Name: Requirement Slot
   m_TagString: Untagged
@@ -212,7 +213,21 @@ MonoBehaviour:
     baseItemId: 0
     baseItem: {fileID: 0}
     items: []
+  dropZone: {fileID: 0}
   icon: {fileID: 5266942921177621003}
+--- !u!114 &842959451339457639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5953468070807609811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0c93701d24e7e47a3ff8f43d6f294c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemRenderer: {fileID: 3371849220593275887}
 --- !u!1 &6326885312279408394
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,8 +18,8 @@ MonoBehaviour:
   isStackable: 0
   maxSize: 0
   icon: {fileID: 21300000, guid: 5abb4c8a678915f479a3ff6fb14c5ca0, type: 3}
-  stat:
-    strength: 0
+  stats:
+    strength: 30
     agility: 0
     intelligence: 0
-    vitality: 0
+    vitality: 30

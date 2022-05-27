@@ -12,6 +12,7 @@ public class Dropzone : MonoBehaviour, IDropHandler
         ItemRenderer sourceItemRenderer = eventData.pointerDrag.GetComponent<Draggable>().itemRenderer;
         ItemContainer source = sourceItemRenderer.itemContainer;
         ItemContainer target = itemRenderer.itemContainer;
+        if (source.baseItem == null) return;
         switch (type)
         {
             case DropzoneType.Inventory:

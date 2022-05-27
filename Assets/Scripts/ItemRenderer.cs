@@ -1,9 +1,8 @@
-using System;
+using EnhancedUI.EnhancedScroller;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class ItemRenderer : MonoBehaviour
+public class ItemRenderer : MonoBehaviour 
 {
     public ItemContainer itemContainer;
     public Dropzone dropZone;

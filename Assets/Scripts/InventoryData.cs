@@ -63,7 +63,7 @@ public class InventoryData : MonoBehaviour
         }
 
         requirementItems = JsonConvert.DeserializeObject<ItemContainer[]>(PlayerPrefs.GetString(Requirement));
-        if (requirementItems.Length == 0 || requirementItems == null)
+        if (requirementItems != null && (requirementItems.Length == 0 || requirementItems == null))
         {
             requirementItems = new ItemContainer[Enum.GetNames(typeof(SlotType)).Length];
         }
@@ -78,6 +78,7 @@ public class InventoryData : MonoBehaviour
                 }
             }
         }
+        CharacterData.CalculateStats();
     }
 
 
@@ -237,10 +238,12 @@ public class InventoryData : MonoBehaviour
         {
             inventoryItems.RemoveAt(indexSource);
             Save();
+            CharacterData.CalculateStats();
             return;
         }
 
         inventoryItems[indexSource] = target;
+        CharacterData.CalculateStats();
         Save();
     }
 
@@ -266,6 +269,27 @@ public class InventoryData : MonoBehaviour
         }
 
         requirementItems[indexSource] = target;
+        CharacterData.CalculateStats();
+
         Save();
+    }
+
+    public void RemoveItemFromInventory(ItemContainer item)
+    {
+        inventoryItems.Remove(item);
+        Save();
+    }
+
+    public ItemContainer GetDataBySlot(int slot)
+    {
+        foreach (var item in inventoryItems)
+        {
+            if (item.slot == slot)
+            {
+                return item;
+            }
+        }
+
+        return null;
     }
 }

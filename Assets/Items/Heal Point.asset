@@ -16,7 +16,7 @@ MonoBehaviour:
   name: Heal Point
   type: 0
   isStackable: 1
-  maxSize: 10
+  maxSize: 20
   icon: {fileID: 21300000, guid: 28d59d4aaf02fc94092d8b84d7f8fd64, type: 3}
   stat:
     strength: 0
